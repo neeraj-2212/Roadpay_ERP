@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Manager List View #T10787 -->
+    <record id="roadpay_manager_data_list" model="ir.ui.view">
+        <field name="name">roadpay.manager.data.list</field>
+        <field name="model">roadpay.manager.data</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="user_id"/>
+                <field name="plaza_ids"/>
+                <field name="operators_id"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Manager Kanban View #T10787 -->
+    <record id="roadpay_manager_data_kanban" model="ir.ui.view">
+        <field name="name">roadpay.manager.data.kanban</field>
+        <field name="model">roadpay.manager.data</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="name"/>
+                <field name="user_id"/>
+                <field name="plaza_ids"/>
+                <field name="operators_id"/>
+                <field name="operator_count"/>
+                <field name="display_plaza_name"/>
+                <field name="display_operators_count"/>
+                <card>
+                    <t t-name="kanban-box">
+                        <div class="o_kanban_card">
+                            <div class="o_kanban_card_body mt8">
+                                <div>
+                                    <div class="o_kanban_image">
+                                        <field name="image" widget="image" options="{'size':[60,60]}"/>
+                                    </div>
+                                    <div>
+                                        <strong>
+                                            <field name="name"/>
+                                        </strong>
+                                        <div>
+                                            <span class="fw-bold">Plaza:</span>
+                                            <t t-esc="record.display_plaza_name.value"/>
+                                        </div>
+                                        <div>
+                                            <span class="fw-bold">Operators:</span>
+                                            <t t-esc="record.display_operators_count.value"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </card>
+
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Manager Form View #T10787 -->
+    <record id="roadpay_manager_data_form" model="ir.ui.view">
+        <field name="name">roadpay.manager.data.form</field>
+        <field name="model">roadpay.manager.data</field>
+        <field name="arch" type="xml">
+            <form string="Manager">
+                <sheet>
+                    <!-- Smart Button Box -->
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_plazas" type="object" class="oe_stat_button" icon="fa-building">
+                            <field name="plaza_count" string="Plazas" widget="statinfo"/>
+                        </button>
+                        <button name="action_view_operators" type="object" class="oe_stat_button" icon="fa-users">
+                            <field name="operator_count" string="Operators" widget="statinfo"/>
+                        </button>
+                    </div>
+
+                    <!-- Added widget="image" -->
+                    <field name="image" widget="image" class="oe_avatar" options="{'size': [100, 100]}"/>
+
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="user_id"/>
+                        </group>
+                        <group>
+                            <!-- Age field moved below the image widget -->
+                            <field name="age"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Other Information">
+                            <group>
+                                <field name="phone_number"/>
+                                <field name="address"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Manager Action #T10787 -->
+    <record id="action_roadpay_managers" model="ir.actions.act_window">
+        <field name="name">Managers</field>
+        <field name="res_model">roadpay.manager.data</field>
+        <field name="view_mode">kanban,list,form</field>
+    </record>
+</odoo>

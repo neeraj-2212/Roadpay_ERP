@@ -1,0 +1,22 @@
+{
+    "name": "RoadPay ERP - Toll Managements",
+    "author": "BizzAppDev Systems Pvt. Ltd.",
+    "website": "http://www.bizzappdev.com",
+    "version": "18.0.1.0.0",
+    "depends": ["base"],
+    "icon": "/roadpay_erp/static/description/icon.png",
+    "data": [
+        "security/security.xml",
+        "security/ir.model.access.csv",
+        "security/record_rules.xml",
+        "data/sequence.xml",
+        "views/operation_data_views.xml",
+        "views/operator_views.xml",
+        "views/manager_views.xml",
+        "views/plaza_views.xml",
+        "views/menu_views.xml",
+    ],
+    "license": "LGPL-3",
+    "installable": True,
+    "application": True,
+}

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Operator List View #T10787 -->
+    <record id="roadpay_operator_data_list" model="ir.ui.view">
+        <field name="name">roadpay.operator.data.list</field>
+        <field name="model">roadpay.operator.data</field>
+        <field name="arch" type="xml">
+            <list string="Operators">
+                <field name="name"/>
+                <field name="gate_no"/>
+                <field name="phone_number" optional="show"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Operator Kanban View #T10787 -->
+   <record id="roadpay_operator_data_kanban" model="ir.ui.view">
+        <field name="name">roadpay.operator.data.kanban</field>
+        <field name="model">roadpay.operator.data</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <card>
+                    <t t-name="kanban-box">
+                        <div class="o_kanban_card">
+                            <!-- Display operator profile picture -->
+                            <div class="o_kanban_image">
+                                <field name="image" widget="image" options="{'size':[60,60]}"/>
+                            </div>
+                            <div>
+                                <strong>
+                                    <field name="name"/>
+                                </strong>
+                                <div>Gate:
+                                    <field name="gate_no"/>
+                                </div>
+                                <!-- Manager info visible only to privileged groups -->
+                                <div>Manager:
+                                    <field name="manager_id" groups="roadpay_erp.group_roadpay_admin,roadpay_erp.group_roadpay_manager"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </card>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Operator Form View #T10787 -->
+    <record id="roadpay_operator_data_form" model="ir.ui.view">
+        <field name="name">roadpay.operator.data.form</field>
+        <field name="model">roadpay.operator.data</field>
+        <field name="arch" type="xml">
+            <form string="Operator">
+                <sheet>
+                    <!-- Smart Button: Links to related transactions -->
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_transactions" type="object" class="oe_stat_button" icon="fa-money">
+                            <field name="txn_count" string="Transactions" widget="statinfo"/>
+                        </button>
+                    </div>
+                    <field name="image" widget="image" class="oe_avatar" options="{'preview_image': 'image'}"/>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="e.g. John" required="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group name="assignment_details" string="Assignment">
+                            <field name="manager_id" groups="roadpay_erp.group_roadpay_admin,roadpay_erp.group_roadpay_manager"/>
+                            <field name="gate_no"/>
+                        </group>
+                        <group name="personal_details" string="Personal Info">
+                            <field name="age"/>
+                            <field name="phone_number" widget="phone"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Contact Details" name="contact_info">
+                            <group>
+                                <field name="address" placeholder="Street address..."/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Operator Action #T10787 -->
+    <record id="action_roadpay_transactions_manager" model="ir.actions.act_window">
+        <field name="name">Operators</field>
+        <field name="res_model">roadpay.operator.data</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create your first operator!</p>
+        </field>
+    </record>
+</odoo>

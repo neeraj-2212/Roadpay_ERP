@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Module Category -->
+    <record id="module_category_roadpay_erp" model="ir.module.category">
+        <field name="name">RoadPay ERP</field>
+        <field name="description">Manages toll plaza operations.</field>
+        <field name="sequence">10</field>
+    </record>
+
+    <!-- Operator Group (lowest) -->
+    <record id="group_roadpay_operator" model="res.groups">
+        <field name="name">RoadPay Operator</field>
+        <field name="category_id" ref="module_category_roadpay_erp"/>
+    </record>
+
+    <!-- Manager Group (implies operator) -->
+    <record id="group_roadpay_manager" model="res.groups">
+        <field name="name">RoadPay Manager</field>
+        <field name="category_id" ref="module_category_roadpay_erp"/>
+        <field name="implied_ids" eval="[(4, ref('group_roadpay_operator'))]"/>
+    </record>
+
+    <!-- Admin Group (implies manager) -->
+    <record id="group_roadpay_admin" model="res.groups">
+        <field name="name">RoadPay Admin</field>
+        <field name="category_id" ref="module_category_roadpay_erp"/>
+        <field name="implied_ids" eval="[(4, ref('group_roadpay_manager'))]"/>
+        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+    </record>
+</odoo>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Admin can see all operations/transactions -->
+    <record id="rule_admin_all_managers" model="ir.rule">
+        <field name="name">RoadPay Admin: Global Managers View</field>
+        <field name="model_id" ref="model_roadpay_manager_data"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('group_roadpay_admin'))]"/>
+    </record>
+
+    <!-- Admin can see all operators -->
+    <record id="rule_admin_all_operators" model="ir.rule">
+        <field name="name">RoadPay Admin: Global Operator View</field>
+        <field name="model_id" ref="model_roadpay_operator_data"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('group_roadpay_admin'))]"/>
+    </record>
+
+    <!-- Admin can see all operations/transactions -->
+    <record id="rule_admin_all_operations" model="ir.rule">
+        <field name="name">RoadPay Admin: Global Transaction View</field>
+        <field name="model_id" ref="model_roadpay_operation_data"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('group_roadpay_admin'))]"/>
+    </record>
+
+    <!-- Managers can see only their own plaza -->
+    <record id="rule_manager_plaza" model="ir.rule">
+        <field name="name">Manager can see their plaza</field>
+        <field name="model_id" ref="model_roadpay_plaza"/>
+        <field name="domain_force">[('manager_id.user_id','=',user.id)]</field>
+        <field name="groups" eval="[(4, ref('group_roadpay_manager'))]"/>
+    </record>
+
+    <!-- Managers can see operators under their plaza -->
+    <record id="rule_manager_operator" model="ir.rule">
+        <field name="name">Manager can see operators under their plaza</field>
+        <field name="model_id" ref="model_roadpay_operator_data"/>
+        <field name="domain_force">[('plaza_id.manager_id.user_id','=',user.id)]</field>
+        <field name="groups" eval="[(4, ref('group_roadpay_manager'))]"/>
+    </record>
+
+    <!-- Managers can see operations of their operators -->
+    <record id="rule_manager_operation" model="ir.rule">
+        <field name="name">Manager can see operations of their operators</field>
+        <field name="model_id" ref="model_roadpay_operation_data"/>
+        <field name="domain_force">[('manager_id.user_id','=',user.id)]</field>
+        <field name="groups" eval="[(4, ref('group_roadpay_manager'))]"/>
+    </record>
+
+    <!-- Operators can see their own info -->
+    <record id="rule_operator_operator" model="ir.rule">
+        <field name="name">Operator can see their own record</field>
+        <field name="model_id" ref="model_roadpay_operator_data"/>
+        <field name="domain_force">[('user_id','=',user.id)]</field>
+        <field name="groups" eval="[(4, ref('group_roadpay_operator'))]"/>
+    </record>
+
+    <!-- Operators can see only their transactions -->
+    <record id="rule_operator_operation" model="ir.rule">
+        <field name="name">Operator can see only their transactions</field>
+        <field name="model_id" ref="model_roadpay_operation_data"/>
+        <field name="domain_force">[('operator_id.user_id','=',user.id)]</field>
+        <field name="groups" eval="[(4, ref('group_roadpay_operator'))]"/>
+    </record>
+
+    <!-- Operators can see all plazas (readonly) -->
+    <record id="rule_operator_plaza" model="ir.rule">
+        <field name="name">Operator can see plaza info readonly</field>
+        <field name="model_id" ref="model_roadpay_plaza"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('group_roadpay_operator'))]"/>
+    </record>
+</odoo>

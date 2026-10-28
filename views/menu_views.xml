@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Root menu -->
+    <menuitem id="menu_roadpay_root" name="RoadPay ERP"/>
+    <!-- Transaction records under the Root menu -->
+    <menuitem id="menu_roadpay_txn" name="Transactions" parent="menu_roadpay_root" action="action_roadpay_operation" sequence="1"/>
+
+    <!-- Parent Category for Users (Managers and Operators) -->
+    <menuitem id="menu_roadpay_users" name="Users" parent="menu_roadpay_root" sequence="2"/>
+    <menuitem id="menu_transactions_manager" name="Managers" parent="menu_roadpay_users" action="action_roadpay_managers" groups="roadpay_erp.group_roadpay_admin"/>
+    <menuitem id="menu_transactions_operators" name="Operators" parent="menu_roadpay_users" action="action_roadpay_transactions_manager" groups="roadpay_erp.group_roadpay_manager,roadpay_erp.group_roadpay_admin"/>
+
+    <!-- Parent Category for Plazas -->
+    <menuitem id="menu_roadpay_config" name="Configuration" parent="menu_roadpay_root"/>
+    <menuitem id="menu_transactions_plaza" name="Plazas" parent="menu_roadpay_config" action="action_roadpay_plaza" sequence="3"/>
+</odoo>

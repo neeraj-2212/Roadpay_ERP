@@ -1,0 +1,15 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_roadpay_manager_admin,roadpay.manager.admin,model_roadpay_manager_data,roadpay_erp.group_roadpay_admin,1,1,1,1
+access_roadpay_plaza_admin,roadpay.plaza.admin,model_roadpay_plaza,roadpay_erp.group_roadpay_admin,1,1,1,1
+access_roadpay_operator_admin,roadpay.operator.admin,model_roadpay_operator_data,roadpay_erp.group_roadpay_admin,1,1,1,1
+access_roadpay_operation_admin,roadpay.operation.admin,model_roadpay_operation_data,roadpay_erp.group_roadpay_admin,1,1,1,1
+access_roadpay_rate_admin,roadpay.rate.admin,model_roadpay_rate,roadpay_erp.group_roadpay_admin,1,1,1,1
+
+access_roadpay_operator_manager,roadpay.operator.manager,model_roadpay_operator_data,roadpay_erp.group_roadpay_manager,1,1,1,1
+access_roadpay_operation_manager,roadpay.operation.manager,model_roadpay_operation_data,roadpay_erp.group_roadpay_manager,1,1,1,0
+access_roadpay_plaza_manager,roadpay.plaza.manager,model_roadpay_plaza,roadpay_erp.group_roadpay_manager,1,0,0,0
+
+access_roadpay_operation_operator,roadpay.operation.operator,model_roadpay_operation_data,roadpay_erp.group_roadpay_operator,1,1,1,0
+access_roadpay_plaza_operator,roadpay.plaza.operator,model_roadpay_plaza,roadpay_erp.group_roadpay_operator,1,0,0,0
+access_roadpay_operator_operator,roadpay.operator.operator,model_roadpay_operator_data,roadpay_erp.group_roadpay_operator,1,0,0,0
+access_roadpay_manager_operator,roadpay.manager.operator,model_roadpay_manager_data,roadpay_erp.group_roadpay_operator,1,0,0,0
